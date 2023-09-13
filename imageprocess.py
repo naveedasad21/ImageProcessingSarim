@@ -1,6 +1,18 @@
 import cv2
 import os 
-
+import sys
+def canny_img_det():
+    img = cv2.imread("news.jpg")
+    gray_image = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    blurred_image = cv2.GaussianBlur(gray_image,(7,7), 0)
+    cv2.imshow("Originall", img)
+    cv2.waitKey(0)
+    canny = cv2.Canny(blurred_image, 10, 30)
+    cv2.imshow("Canny with low thresholds", canny)
+    cv2.waitKey(0)
+    canny2 = cv2.Canny(blurred_image,50,150)
+    cv2.imshow("Canny with high thresholds", canny2)
+    cv2.waitKey(0)
 
 def face_rec_multi(): 
     img = cv2.imread("news.jpg")
@@ -45,8 +57,9 @@ def read_images_directory():
             
     
 img  = cv2.imread("galaxy.jpg", 0)
-read_images_directory()
-face_rec()
-face_rec_multi()
+#read_images_directory()
+#face_rec()
+#face_rec_multi()
+canny_img_det()
 print(img)
 print(img.shape)
